@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true eapriala/epriala:Learning_docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "Learning_docker-react"
+  env: "Learningdockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-763372964158"
+  bucket_path: "Learning_docker-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secret: "$AWS_SECRET_KEY"
